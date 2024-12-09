@@ -1,0 +1,40 @@
+<div>
+  <h2>{{ newBook.id ? 'Edit Book' : 'Add New Book' }}</h2>
+  <form (ngSubmit)="newBook.id ? updateBook() : addBook()">
+    <label>Author:</label>
+    <input type="text" [(ngModel)]="newBook.author" name="author" required />
+    <label>Title:</label>
+    <input type="text" [(ngModel)]="newBook.title" name="title" required />
+    <label>Address:</label>
+    <input type="text" [(ngModel)]="newBook.address" name="address" required />
+    <label>Description:</label>
+    <textarea [(ngModel)]="newBook.desriptions" name="desriptions" required></textarea>
+    <button type="submit">{{ newBook.id ? 'Update Book' : 'Add Book' }}</button>
+  </form>
+
+  <h1>Books List</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Author</th>
+        <th>Title</th>
+        <th>Address</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of books">
+        <td>{{ book.author }}</td>
+        <td>{{ book.title }}</td>
+        <td>{{ book.address }}</td>
+        <td>{{ book.desriptions }}</td>
+        <td>
+          <button (click)="editBook(book)">Edit</button>
+          <button (click)="deleteBook(book.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
